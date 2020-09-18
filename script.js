@@ -11,17 +11,21 @@
 //         Save
 //       </button>
 //     </div> */}
+$(document).ready(function (){
+var timeArray = {
+    morning: ["9AM", "10AM", "11AM",], 
+    evening: ["12PM", "1PM", "2PM", "3PM", "4PM", "5PM",]
+};
 
-var timeArray = ["9AM","10AM","11AM","12PM","1PM","2PM","3PM","4PM","5PM",]
-var timeOfDay 
-var row = (".row")
-row.classList.add("time-block")
-
+var scheduleColors = {
+    Morning: ["9AM", "10AM", "11AM",],
+    Evening: ["12PM", "1PM", "2PM", "3PM", "4PM", "5PM",]
+} 
+var i = 0
 $("#currentDay").text(moment().calendar());
 
-$(".container").append($(row))
 
-
+})
 //TODO: Show time at top of the calendar, use moment.js to grab current time. set text of current time ptag with ID of currentDay(DONE) 
 
 //TODO: create row, create div, textarea, and a button, give them content, append them to row, then append row to page.(not repetitive method like loop.)
