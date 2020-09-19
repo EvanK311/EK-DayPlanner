@@ -10,3 +10,5 @@
 -Text entered into the open field will be saved upon clicking the corresponding save button. 
 
 -Text saved using the save buttons will remain on the page after the page is refreshed.
+
+![page layout](EKPlanner.PNG)
