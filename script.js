@@ -1,12 +1,4 @@
 
-//TODO: add click event listener for save buttons 
-
-//TODO: grab value of text area and save to var. (need to be able to save text from the area that is same row as button.)
-
-//TODO: using localStorage.setItem, save text to local storage
-
-//TODO: when page is refreshed, saved data can be retrieved from local storage using localStorage.getItem and show them in correct text area.(set saved local)
-console.log("never give up, yo")
 
 var daContainer = $(".container")
 var timeArray = ["9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00",]
