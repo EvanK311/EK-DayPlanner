@@ -34,14 +34,14 @@
 //TODO: using localStorage.setItem, save text to local storage
 
 //TODO: when page is refreshed, saved data can be retrieved from local storage using localStorage.getItem and show them in correct text area.(set saved local)
-console.log("hello")
+console.log("never give up, yo")
 
 var daContainer = $(".container")
 var timeArray = ["9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00",]
 var rowEl = $('<div>')
 var textSpot = $('<textarea>')
 var currenTime = moment().format('H');
-
+var saveText = []
 
 // Displaying today and current time
 $("#currentDay").text(moment().format("dddd, MMMM Do YYYY, h:mm:ss a"));
@@ -91,8 +91,9 @@ for (i = 0; i < timeArray.length; i++) {
    
 }
 $(".saveBtn").on("click", function (event) {
-    if ($(this))
-    
-    console.log($(this))
-    console.log($(this).attr("data-id"))
+    event.preventDefault()
+    if ($(this)) {
+        localStorage.setItem("saveStuff", JSON.stringify(saveText))
+    }
+        
 })
