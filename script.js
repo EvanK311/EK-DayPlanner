@@ -13,15 +13,21 @@ var timeArray = ["9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "
 
 var currenTime = moment().format('H');
 var saveText =
-    [{ blankText: 0, text: "" }]
-    [{ blankText: 1, text: "" }]
-    [{ blankText: 2, text: "" }]
-    [{ blankText: 3, text: "" }]
-    [{ blankText: 4, text: "" }]
-    [{ blankText: 5, text: "" }]
-    [{ blankText: 6, text: "" }]
-    [{ blankText: 7, text: "" }]
-    [{ blankText: 8, text: "" }]
+    [{ blankText: 0, text: "" },
+    { blankText: 1, text: "" },
+    { blankText: 2, text: "" },
+    { blankText: 3, text: "" },
+    { blankText: 4, text: "" },
+    { blankText: 5, text: "" },
+    { blankText: 6, text: "" },
+    { blankText: 7, text: "" },
+    { blankText: 8, text: "" }];
+
+var storageCheck = JSON.parse(localStorage.getItem("plans"))
+
+if (storageCheck != null) {
+    saveText = storageCheck;
+}
 
 // Displaying today and current time
 $("#currentDay").text(moment().format("dddd, MMMM Do YYYY, h:mm:ss a"));
@@ -33,6 +39,7 @@ for (i = 0; i < timeArray.length; i++) {
     var rowEl = $("<div class = 'row time-block'>");
     var timeSpot = $("<div class = 'col-md-2 hour'>")
     var textSpot = $("<textarea data-id = savedIt class = 'col-md-8'>");
+    textSpot.text(saveText[i].text)
     var saveMe = $("<button data-id = savedIt class = 'col-md-2 saveBtn'>")
     saveMe.attr("data-savedIt", i)
     textSpot.attr("data-savedIt", i)
@@ -70,7 +77,12 @@ for (i = 0; i < timeArray.length; i++) {
 $(".saveBtn").on("click", function (event) {
     var loggedInfo = ($(this).attr("data-savedIt"));
     var loggedText = $(`textarea[data-savedIt=${loggedInfo}]`).val();
-    for (t = 0; t < timeArray.length)
+    for (t = 0; t < saveText.length; t++) {
+        if (saveText[t].blankText === parseInt(loggedInfo)) {
+            saveText[t].text = loggedText;
+        }
+    }
     
-        
+    localStorage.setItem("plans", JSON.stringify(saveText))
+    console.log(saveText)
 })
