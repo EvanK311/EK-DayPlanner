@@ -11,21 +11,8 @@
 //         Save
 //       </button>
 //     </div> */}
-$(document).ready(function (){
-var timeArray = {
-    morning: ["9AM", "10AM", "11AM",], 
-    evening: ["12PM", "1PM", "2PM", "3PM", "4PM", "5PM",]
-};
-
-var scheduleColors = {
-    Morning: ["9AM", "10AM", "11AM",],
-    Evening: ["12PM", "1PM", "2PM", "3PM", "4PM", "5PM",]
-} 
-var i = 0
-$("#currentDay").text(moment().calendar());
 
 
-})
 //TODO: Show time at top of the calendar, use moment.js to grab current time. set text of current time ptag with ID of currentDay(DONE) 
 
 //TODO: create row, create div, textarea, and a button, give them content, append them to row, then append row to page.(not repetitive method like loop.)
@@ -47,4 +34,55 @@ $("#currentDay").text(moment().calendar());
 //TODO: using localStorage.setItem, save text to local storage
 
 //TODO: when page is refreshed, saved data can be retrieved from local storage using localStorage.getItem and show them in correct text area.(set saved local)
-console.log(moment().format());
+console.log("hello")
+
+var daContainer = $(".container")
+var timeArray = ["9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00",]
+var rowEl = $('<div>')
+var textSpot = $('<textarea>')
+var currenTime = 14
+
+
+// Displaying today and current time
+$("#currentDay").text(moment().format("dddd, MMMM Do YYYY, h:mm:ss a"));
+
+
+
+
+for (i = 0; i < timeArray.length; i++) {
+    var rowEl = $("<div class = 'row time-block'>");
+    var timeSpot = $("<div class = 'col-md-2 hour'>")
+    var textSpot = $("<textarea class = 'col-md-8'>");
+    var saveMe = $("<button class = 'col-md-2 saveBtn'>")
+    timeFix = i + 9
+    timeFix++
+
+
+    timeSpot.text(timeArray[i])
+    saveMe.text("Save")
+    daContainer.append(rowEl)
+    rowEl.append(timeSpot)
+    rowEl.append(textSpot)
+    rowEl.append(saveMe)
+
+    if (currenTime === timeFix) {
+
+        timeSpot.attr("class", "hour col-md-2 present")
+        textSpot.attr("class", "col-md-8 present")
+    } else {
+        if (timeFix < currenTime) {
+
+            timeSpot.attr("class", "hour col-md-2 past")
+            textSpot.attr("class", "col-md-8 past")
+        }
+        else {
+            if (timeFix > currenTime) {
+                timeSpot.attr("class", "hour col-md-2 future")
+                textSpot.attr("class", "col-md-8 future")
+            }
+        }
+    }
+
+
+
+}
