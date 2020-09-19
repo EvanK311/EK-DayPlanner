@@ -1,31 +1,3 @@
-// TODO: Create one row with time, text area, and button using jquery.
-// layout for row/col format---
-// {/* <div class="row time-block">
-//       <div class="col-md-2 hour">
-//         9AM
-//       </div>
-//       <textarea class="col-md-8">
-
-//       </textarea>
-//       <button class="col-md-2 saveBtn">
-//         Save
-//       </button>
-//     </div> */}
-
-
-//TODO: Show time at top of the calendar, use moment.js to grab current time. set text of current time ptag with ID of currentDay(DONE) 
-
-//TODO: create row, create div, textarea, and a button, give them content, append them to row, then append row to page.(not repetitive method like loop.)
-
-//TODO:create array to hold these times (timeArray["9am","10am", "11am"])(DONE)
-
-//TODO:apply elements to some content
-
-//TODO: use For loop to loop array of hours and create div for row. create time blocks for standard business hours. 
-
-//TODO: use moment.js to compare current time to page
-
-//TODO: give elements classes they need using if statement and moment.js to see if the hour we're looping over is >= hour passed. if so give text area class of past
 
 //TODO: add click event listener for save buttons 
 
@@ -48,7 +20,7 @@ $("#currentDay").text(moment().format("dddd, MMMM Do YYYY, h:mm:ss a"));
 
 
 
-
+// loop to dynamically produce the times
 for (i = 0; i < timeArray.length; i++) {
     var rowEl = $("<div class = 'row time-block'>");
     var timeSpot = $("<div class = 'col-md-2 hour'>")
@@ -58,7 +30,7 @@ for (i = 0; i < timeArray.length; i++) {
     timeFix = i + 9
     timeFix++
     
-
+// assigning classes to elements
     timeSpot.text(timeArray[i])
     saveMe.text("Save")
     // saveMe.attr("data-savedIt")
@@ -68,28 +40,26 @@ for (i = 0; i < timeArray.length; i++) {
     rowEl.append(textSpot)
     rowEl.append(saveMe)
 
+    // if/else statements determing color of time blocks depending on time of day
     if (currenTime === timeFix) {
-
         timeSpot.attr("class", "hour col-md-2 present")
         textSpot.attr("class", "col-md-8 present")
     } else {
         if (timeFix < currenTime) {
-
             timeSpot.attr("class", "hour col-md-2 past")
             textSpot.attr("class", "col-md-8 past")
-        }
-        else {
+        } else {
             if (timeFix > currenTime) {
                 timeSpot.attr("class", "hour col-md-2 future")
                 textSpot.attr("class", "col-md-8 future")
-            }
-            
+            }            
         }
     }
 
 
    
 }
+// click event that stores information from textarea to local storage
 $(".saveBtn").on("click", function (event) {
     event.preventDefault()
     if ($(this)) {
